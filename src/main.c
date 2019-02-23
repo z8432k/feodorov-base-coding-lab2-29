@@ -15,7 +15,8 @@ int main(const int argc, const char** argv) {
 
   DecartPoint_t* point = readPoint(argv);
 
-  printf("Point coords: (%0.2f, %0.2f)\n", point->x, point->y);
+  printf("Point coords:\t(%0.2f, %0.2f)\n", point->x, point->y);
+  printf("Radius:\t\t%d\n", RADIUS);
 
   bool result = checkPoint(point, RADIUS);
 
