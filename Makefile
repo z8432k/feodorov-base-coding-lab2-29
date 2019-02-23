@@ -4,8 +4,11 @@ LDLIBS = -lm
 
 default: bin/$(PROGRAM)
 
-bin/$(PROGRAM): bin/$(PROGRAM).o
+bin/$(PROGRAM): bin/$(PROGRAM).o bin/point.o
 	$(CC) $^ $(LDLIBS) -o $@
+
+bin/point.o: src/point.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 bin/$(PROGRAM).o: src/main.c
 	$(CC) $(CFLAGS) -o $@ -c $<
