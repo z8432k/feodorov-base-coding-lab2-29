@@ -5,7 +5,7 @@
 
 #define RADIUS 1
 
-void printResult(const bool result);
+static void printResult(const bool result);
 
 int main(const int argc, const char** argv) {
   if (argc < 3) {
@@ -15,8 +15,7 @@ int main(const int argc, const char** argv) {
 
   DecartPoint_t* point = readPoint(argv);
 
-  printf("Point coords:\t(%0.2f, %0.2f)\n", point->x, point->y);
-  printf("Radius:\t\t%d\n", RADIUS);
+  printPoint(point);
 
   bool result = checkPoint(point, RADIUS);
 
@@ -27,7 +26,7 @@ int main(const int argc, const char** argv) {
   return 0;
 }
 
-void printResult(const bool ok) {
+static void printResult(const bool ok) {
   printf("\n");
 
   if (ok) {
