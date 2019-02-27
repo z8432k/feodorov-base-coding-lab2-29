@@ -35,8 +35,6 @@ bool checkPoint(const DecartPoint_t *point, const float radius) {
     float pointRadius = calcPointRadius(point);
     float maxRadius = calcMaxRadius(point);
 
-    printf("%f - %f\n", pointRadius, maxRadius);
-
     if (pointRadius <= maxRadius) {
       return true;
     }
