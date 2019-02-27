@@ -1,5 +1,5 @@
 PROGRAM = point_area
-CFLAGS = -Wall -g -std=c99 -O0
+CFLAGS = -Wall -g -O0
 LDLIBS = -lm
 
 default: bin/$(PROGRAM)
