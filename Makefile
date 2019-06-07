@@ -1,5 +1,6 @@
+CC = g++
 PROGRAM = point_area
-CFLAGS = -Wall -g -O0
+CFLAGS = -Wall -Wextra -ggdb
 LDLIBS = -lm
 
 default: bin/$(PROGRAM)
@@ -7,10 +8,10 @@ default: bin/$(PROGRAM)
 bin/$(PROGRAM): bin/$(PROGRAM).o bin/point.o
 	$(CC) $^ $(LDLIBS) -o $@
 
-bin/point.o: src/point.c
+bin/point.o: src/point.cpp
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-bin/$(PROGRAM).o: src/main.c
+bin/$(PROGRAM).o: src/main.cpp
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:

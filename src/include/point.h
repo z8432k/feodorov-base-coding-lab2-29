@@ -1,9 +1,8 @@
-typedef struct DecartPoint
-{
+typedef struct {
   float x;
   float y;
 } DecartPoint_t;
 
-DecartPoint_t *readPoint(const char **argv);
-bool checkPoint(const DecartPoint_t *point, const float radius);
+DecartPoint_t *inputPoint();
+bool checkPoint(const DecartPoint_t *point);
 void printPoint(const DecartPoint_t *point);

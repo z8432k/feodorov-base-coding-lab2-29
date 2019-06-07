@@ -1,29 +1,37 @@
 #include <stdlib.h>
-#include <stdio.h>
+#include <iostream>
+#include <limits>
 #include <math.h>
 #include <stdbool.h>
 #include "include/point.h"
 
-
-#define X_ARG_POSITION 1
-#define Y_ARG_POSITION 2
-
 #define PW(x) (powf(x, 2))
+
+using namespace std;
 
 static float calcPointRadius(const DecartPoint_t *point);
 static float calcMaxRadius(const DecartPoint_t *point);
+static void inputValue(float *value, const char* errStr);
 
-DecartPoint_t *readPoint(const char **argv) {
+DecartPoint_t *inputPoint() {
   DecartPoint_t *point = (DecartPoint_t *) malloc(sizeof(DecartPoint_t));
 
-  point->x = (float) atof(argv[X_ARG_POSITION]);
-  point->y = (float) atof(argv[Y_ARG_POSITION]);
+  const char *errStr = "Bad value. Try again: ";
+
+  cout << "Input x point coord: ";
+  inputValue(&point->x, errStr);
+
+  cout << "Input y point coord: ";
+  inputValue(&point->y, errStr);
 
   return point;
 }
 
-bool checkPoint(const DecartPoint_t *point, const float radius) {
-  if (point->y < 0) {
+bool checkPoint(const DecartPoint_t *point) {
+  if (point->y == 0 && point->x == 0) {
+    return true;
+  }
+  else if (point->y < 0) {
     return false;
   }
   else if (point->x < 0) {
@@ -44,7 +52,7 @@ bool checkPoint(const DecartPoint_t *point, const float radius) {
 }
 
 void printPoint(const DecartPoint_t *point) {
-  printf("Point coords:\t(%0.2f, %0.2f)\n", point->x, point->y);
+  cout << "Point coords:\t(" << point->x << ", " << point->y << ")" << endl;
 }
 
 static float calcPointRadius(const DecartPoint_t *point) {
@@ -55,4 +63,15 @@ static float calcMaxRadius(const DecartPoint_t *point) {
   float pointAngle = atanf(point->y / point->x);
 
   return sinf(M_PI_4) / cosf(pointAngle - M_PI_4);
+}
+
+static void inputValue(float *value, const char* errStr) {
+  cin >> *value;
+
+  while (!cin.good()) {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cerr << errStr;
+    cin >> *value;
+  }
 }
