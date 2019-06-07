@@ -14,8 +14,5 @@
 
 ```text
 $ make
-$ ./bin/point_area -0.5 -0.7
-Point coords: (0.50, 0.70)
-
-Point is in the area.
+$ ./bin/point_area
 ```
